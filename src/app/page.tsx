@@ -234,18 +234,22 @@ const App = () => {
       <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
           {/* Logo Prefeitura de Manaus */}
-          <div className="flex items-center gap-4 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <img 
-              src="https://transparencia.manaus.am.gov.br/transparencia/v2/imagens/logo.png" 
-              alt="Prefeitura de Manaus" 
-              className="h-10 md:h-14 object-contain group-hover:scale-105 transition-transform"
+              src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Bras%C3%A3o_do_Munic%C3%ADpio_de_Manaus.svg" 
+              alt="Brasão de Manaus" 
+              className="w-10 h-10 md:w-12 md:h-12 object-contain group-hover:scale-105 transition-transform"
             />
-            <div className="w-px h-10 bg-slate-200 mx-2 hidden lg:block"></div>
-            <div className="hidden lg:flex flex-col justify-center">
-               <span className="text-xs md:text-sm font-bold text-blue-900 flex items-center gap-1 uppercase tracking-tighter">
+            <div className="flex flex-col justify-center">
+              <span className="text-base md:text-xl font-black text-blue-900 leading-none tracking-tight">PREFEITURA DE</span>
+              <span className="text-base md:text-xl font-black text-green-700 leading-none tracking-tight">MANAUS</span>
+            </div>
+            <div className="w-px h-8 bg-slate-300 mx-1 md:mx-3 hidden sm:block"></div>
+            <div className="hidden sm:flex flex-col justify-center">
+               <span className="text-xs md:text-sm font-bold text-blue-900 flex items-center gap-1">
                  <Dog size={14} className="text-green-600" /> Ração do
                </span>
-               <span className="text-xs md:text-sm font-bold text-green-600 leading-none uppercase tracking-tighter">Meu Pet</span>
+               <span className="text-xs md:text-sm font-bold text-green-600 leading-none">Meu Pet</span>
             </div>
           </div>
 
@@ -284,10 +288,14 @@ const App = () => {
              <div className="p-6 flex justify-between items-center border-b border-slate-100">
                <div className="flex items-center gap-3">
                  <img 
-                    src="https://transparencia.manaus.am.gov.br/transparencia/v2/imagens/logo.png" 
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Bras%C3%A3o_do_Munic%C3%ADpio_de_Manaus.svg" 
                     alt="Logo" 
-                    className="h-8 object-contain"
+                    className="w-10 h-10 object-contain"
                   />
+                  <div className="flex flex-col">
+                    <span className="text-xs font-black text-blue-900 leading-none">PREFEITURA DE</span>
+                    <span className="text-xs font-black text-green-700 leading-none">MANAUS</span>
+                  </div>
                </div>
                <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-slate-400 hover:text-blue-900 transition-colors">
                  <X size={28} />
