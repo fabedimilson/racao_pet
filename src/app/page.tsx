@@ -234,22 +234,18 @@ const App = () => {
       <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
         <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
           {/* Logo Prefeitura de Manaus */}
-          <div className="flex items-center gap-3 group cursor-pointer">
+          <div className="flex items-center gap-4 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bras%C3%A3o_de_Manaus.svg/100px-Bras%C3%A3o_de_Manaus.svg.png" 
-              alt="Brasão de Manaus" 
-              className="w-10 h-10 md:w-12 md:h-12 object-contain group-hover:scale-105 transition-transform"
+              src="https://transparencia.manaus.am.gov.br/transparencia/v2/imagens/logo.png" 
+              alt="Prefeitura de Manaus" 
+              className="h-10 md:h-14 object-contain group-hover:scale-105 transition-transform"
             />
-            <div className="flex flex-col justify-center">
-              <span className="text-base md:text-xl font-black text-blue-900 leading-none tracking-tight">PREFEITURA DE</span>
-              <span className="text-base md:text-xl font-black text-green-700 leading-none tracking-tight">MANAUS</span>
-            </div>
-            <div className="w-px h-8 bg-slate-300 mx-1 md:mx-3 hidden sm:block"></div>
-            <div className="hidden sm:flex flex-col justify-center">
-               <span className="text-xs md:text-sm font-bold text-blue-900 flex items-center gap-1">
+            <div className="w-px h-10 bg-slate-200 mx-2 hidden lg:block"></div>
+            <div className="hidden lg:flex flex-col justify-center">
+               <span className="text-xs md:text-sm font-bold text-blue-900 flex items-center gap-1 uppercase tracking-tighter">
                  <Dog size={14} className="text-green-600" /> Ração do
                </span>
-               <span className="text-xs md:text-sm font-bold text-green-600 leading-none">Meu Pet</span>
+               <span className="text-xs md:text-sm font-bold text-green-600 leading-none uppercase tracking-tighter">Meu Pet</span>
             </div>
           </div>
 
@@ -286,13 +282,12 @@ const App = () => {
           {/* Menu Drawer */}
           <div className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-500 transform ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col`}>
              <div className="p-6 flex justify-between items-center border-b border-slate-100">
-               <div className="flex items-center gap-2">
+               <div className="flex items-center gap-3">
                  <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bras%C3%A3o_de_Manaus.svg/100px-Bras%C3%A3o_de_Manaus.svg.png" 
+                    src="https://transparencia.manaus.am.gov.br/transparencia/v2/imagens/logo.png" 
                     alt="Logo" 
-                    className="w-8 h-8 object-contain"
+                    className="h-8 object-contain"
                   />
-                  <span className="font-bold text-blue-900 text-sm">Ração do Meu Pet</span>
                </div>
                <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-slate-400 hover:text-blue-900 transition-colors">
                  <X size={28} />
@@ -701,15 +696,14 @@ const App = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex flex-col gap-4 mb-8">
                 <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bras%C3%A3o_de_Manaus.svg/100px-Bras%C3%A3o_de_Manaus.svg.png" 
-                  alt="Brasão de Manaus" 
-                  className="w-10 h-10 grayscale brightness-200 opacity-90" 
+                  src="https://www.manaus.am.gov.br/wp-content/uploads/2025/06/logo-prefeitura-de-manaus-white.png" 
+                  alt="Logo Prefeitura de Manaus" 
+                  className="h-12 md:h-16 object-contain w-fit opacity-90" 
                 />
-                <div>
-                  <h1 className="text-lg font-bold text-white leading-none">Prefeitura de Manaus</h1>
-                  <p className="text-green-500 text-sm font-semibold">Ração do Meu Pet</p>
+                <div className="px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full w-fit">
+                  PROGRAMA RAÇÃO DO MEU PET
                 </div>
               </div>
               <p className="text-slate-400 text-sm max-w-sm mb-4">
