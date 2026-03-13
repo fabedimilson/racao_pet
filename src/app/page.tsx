@@ -220,6 +220,14 @@ const App = () => {
         .blob-shape {
           border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
         }
+
+        @keyframes slide-in-top {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(0); }
+        }
+        .animate-slide-in-top {
+          animation: slide-in-top 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
       `}} />
 
       {/* HEADER / NAVBAR */}
@@ -267,20 +275,91 @@ const App = () => {
           </button>
         </div>
 
-        {/* Mobile Nav */}
-        {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-slate-100 p-4 flex flex-col gap-4">
-            <a href="#como-funciona" onClick={() => setMobileMenuOpen(false)} className="block p-2 text-slate-600 font-medium">Como Funciona</a>
-            <a href="#estatisticas" onClick={() => setMobileMenuOpen(false)} className="block p-2 text-slate-600 font-medium">Estatísticas</a>
-            <a href="#editais" onClick={() => setMobileMenuOpen(false)} className="block p-2 text-slate-600 font-medium">Editais e Resultados</a>
-            <button onClick={() => { setShowConsulta(true); setMobileMenuOpen(false); }} className="border border-blue-900 text-blue-900 p-3 rounded-lg font-semibold w-full flex justify-center items-center gap-2">
-              <Search size={18} /> Consultar Processo
-            </button>
-            <button onClick={() => { setShowForm(true); setMobileMenuOpen(false); }} className="bg-blue-900 text-white p-3 rounded-lg font-semibold w-full flex justify-center items-center gap-2">
-              Fazer Inscrição Agora
-            </button>
+        {/* Mobile Nav Overlay */}
+        <div className={`fixed inset-0 z-[60] md:hidden transition-all duration-500 ${mobileMenuOpen ? 'visible' : 'invisible'}`}>
+          {/* Backdrop */}
+          <div 
+            className={`absolute inset-0 bg-blue-900/40 backdrop-blur-md transition-opacity duration-500 ${mobileMenuOpen ? 'opacity-100' : 'opacity-0'}`}
+            onClick={() => setMobileMenuOpen(false)}
+          ></div>
+          
+          {/* Menu Drawer */}
+          <div className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-500 transform ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} flex flex-col`}>
+             <div className="p-6 flex justify-between items-center border-b border-slate-100">
+               <div className="flex items-center gap-2">
+                 <img 
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Bras%C3%A3o_de_Manaus.svg/100px-Bras%C3%A3o_de_Manaus.svg.png" 
+                    alt="Logo" 
+                    className="w-8 h-8 object-contain"
+                  />
+                  <span className="font-bold text-blue-900 text-sm">Ração do Meu Pet</span>
+               </div>
+               <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-slate-400 hover:text-blue-900 transition-colors">
+                 <X size={28} />
+               </button>
+             </div>
+
+             <nav className="flex-1 p-6 flex flex-col gap-2">
+               {[
+                 { href: "#como-funciona", label: "Como Funciona", icon: <Info size={20} /> },
+                 { href: "#estatisticas", label: "Estatísticas", icon: <BarChart3 size={20} /> },
+                 { href: "#editais", label: "Editais e Resultados", icon: <FileText size={20} /> }
+               ].map((item, idx) => (
+                 <a 
+                   key={idx} 
+                   href={item.href} 
+                   onClick={() => setMobileMenuOpen(false)} 
+                   className="flex items-center gap-4 p-4 rounded-2xl text-slate-600 font-bold hover:bg-slate-50 transition-all border border-transparent hover:border-slate-100"
+                 >
+                   <div className="bg-slate-100 p-2 rounded-xl text-blue-600">
+                     {item.icon}
+                   </div>
+                   {item.label}
+                 </a>
+               ))}
+               
+               <div className="h-px bg-slate-100 my-4"></div>
+
+               <button 
+                 onClick={() => { setShowConsulta(true); setMobileMenuOpen(false); }} 
+                 className="flex items-center gap-4 p-4 rounded-2xl text-blue-900 font-bold hover:bg-blue-50 transition-all border border-blue-100 mb-2"
+               >
+                 <div className="bg-blue-100 p-2 rounded-xl text-blue-900">
+                   <Search size={20} />
+                 </div>
+                 Consultar Processo
+               </button>
+
+               <button 
+                 onClick={() => { setShowForm(true); setMobileMenuOpen(false); }} 
+                 className="flex items-center gap-4 p-5 rounded-3xl bg-blue-900 text-white font-bold shadow-lg shadow-blue-900/20 hover:bg-blue-800 transition-all"
+               >
+                 <div className="bg-white/20 p-2 rounded-xl">
+                   <FileText size={20} />
+                 </div>
+                 Fazer Inscrição Agora
+               </button>
+             </nav>
+
+             <div className="p-8 border-t border-slate-100 bg-slate-50/50">
+               <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-4">Informações</p>
+               <div className="flex flex-col gap-3">
+                 <div className="flex items-center gap-3 text-sm text-slate-600">
+                   <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-slate-200 shadow-sm">
+                     <Megaphone size={14} />
+                   </div>
+                   <span>Disque Denúncia: 153</span>
+                 </div>
+                 <div className="flex items-center gap-3 text-sm text-slate-600">
+                   <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-slate-200 shadow-sm">
+                     <Heart size={14} className="text-red-500" />
+                   </div>
+                   <span>Prefeitura de Manaus</span>
+                 </div>
+               </div>
+             </div>
           </div>
-        )}
+        </div>
       </header>
 
       {/* HERO SECTION */}
